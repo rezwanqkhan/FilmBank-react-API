@@ -15,6 +15,7 @@ function Navbar() {
                     <span className="logo-icon">🎬</span>
                     Film Bank
                 </Link>
+
                 <div className="nav-links">
                     <Link 
                         to="/" 

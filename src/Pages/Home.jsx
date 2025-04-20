@@ -3,6 +3,7 @@ import MovieCard from "../components/MovieCard";
 import "../css/Home.css";
 import { getPopularMovies, searchMovies } from "../services/API";
 import { useTheme } from "../contexts/ThemeContext";
+import { useSearchParams } from "react-router-dom";
 
 export default function Home() {
     const [searchQuery, setSearchQuery] = useState("");
@@ -10,10 +11,21 @@ export default function Home() {
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(true);
     const { darkMode, toggleTheme } = useTheme();
+    const [searchParams] = useSearchParams();
+    const [searchTimeout, setSearchTimeout] = useState(null);
 
     useEffect(() => {
-        loadPopularMovies();
-    }, []);
+        // Check for navbar search results first
+        const navbarQuery = searchParams.get('search');
+        if (navbarQuery) {
+            const results = JSON.parse(localStorage.getItem('searchResults') || '[]');
+            setMovies(results);
+            setSearchQuery(navbarQuery);
+            setLoading(false);
+        } else {
+            loadPopularMovies();
+        }
+    }, [searchParams]);
 
     const loadPopularMovies = async () => {
         try {
@@ -31,15 +43,38 @@ export default function Home() {
 
     const handleSearch = async (event) => {
         event.preventDefault();
-        
         if (!searchQuery.trim()) {
             loadPopularMovies();
             return;
         }
+        performSearch(searchQuery);
+    };
 
+    const handleSearchInput = (e) => {
+        const query = e.target.value;
+        setSearchQuery(query);
+        
+        // Clear any existing timeout
+        if (searchTimeout) {
+            clearTimeout(searchTimeout);
+        }
+
+        // Set a new timeout for real-time search
+        const timeoutId = setTimeout(() => {
+            if (query.trim()) {
+                performSearch(query);
+            } else {
+                loadPopularMovies();
+            }
+        }, 500);
+
+        setSearchTimeout(timeoutId);
+    };
+
+    const performSearch = async (query) => {
         try {
             setLoading(true);
-            const searchResults = await searchMovies(searchQuery);
+            const searchResults = await searchMovies(query);
             setMovies(searchResults);
             setError(null);
         } catch (error) {
@@ -66,13 +101,13 @@ export default function Home() {
                 <form onSubmit={handleSearch} className="search-form">
                     <input
                         type="text"
-                        placeholder="Search for movies..." 
-                        className="search-input"
+                        placeholder="Search for movies..."
                         value={searchQuery}
-                        onChange={(e) => setSearchQuery(e.target.value)}
+                        onChange={handleSearchInput}
+                        className="search-input"
                     />
                     <button type="submit" className="search-button">
-                        <span className="search-icon">🔍</span>
+                        <span>🔍</span>
                         Search
                     </button>
                 </form>
