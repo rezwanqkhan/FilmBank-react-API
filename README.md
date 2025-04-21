@@ -13,10 +13,10 @@ A modern, responsive React application that allows users to search and explore m
 
 ## 🖼️ Screenshots
 
-![Light Mode View](./ss/light.png)
+![Light Mode View](./screenshots/light.png)
 *Application in Light Mode - Showcasing the movie search interface*
 
-![Dark Mode View](./ss/dark.png)
+![Dark Mode View](./sscreenshots/dark.png)
 *Application in Dark Mode - Featuring the elegant dark theme*
 
 ## 🚀 Getting Started
@@ -35,6 +35,24 @@ A modern, responsive React application that allows users to search and explore m
 4. Request a new API key for a "Developer" account
 5. Fill in the required application details
 6. Once approved, copy your API key (v3 auth)
+
+### API Configuration (Two Options)
+
+#### Option 1: Using config file (Recommended)
+1. Create a new file `src/config/apiConfig.js`:
+```javascript
+export const API_KEY = 'your_api_key_here';
+export const BASE_URL = 'https://api.themoviedb.org/3';
+```
+
+#### Option 2: Direct API file modification
+If you prefer, you can add the API key directly in `src/services/API.js`:
+1. Open `src/services/API.js`
+2. Uncomment and modify these lines at the top of the file:
+```javascript
+// const API_KEY = 'your_api_key_here';
+// const BASE_URL = 'https://api.themoviedb.org/3';
+```
 
 ### Installation
 
@@ -102,3 +120,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - [The Movie Database (TMDB)](https://www.themoviedb.org/) for providing a comprehensive, free API for movie data. This product uses the TMDB API but is not endorsed or certified by TMDB.
 - Icons and emojis from [OpenMoji](https://openmoji.org/)
+
+## 👨‍💻 Author
+
+**Rezwanullah Quraishi**
+
+- GitHub: [@Rezwanullah](https://github.com/rezwanqkhan)
+- LinkedIn: [Rezwanullah Quraishi](https://www.linkedin.com/in/rezwanullah-quraishi-608314260/)
+
+---
+*Made with ❤️ by Rezwanullah Quraishi*
