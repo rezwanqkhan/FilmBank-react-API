@@ -16,7 +16,7 @@ A modern, responsive React application that allows users to search and explore m
 ![Light Mode View](./screenshots/light.png)
 *Application in Light Mode - Showcasing the movie search interface*
 
-![Dark Mode View](./sscreenshots/dark.png)
+![Dark Mode View](./screenshots/dark.png)
 *Application in Dark Mode - Featuring the elegant dark theme*
 
 ## 🚀 Getting Started
