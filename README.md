@@ -16,7 +16,7 @@ A modern, responsive React application that allows users to search and explore m
 ![Light Mode View](./screenshots/light.png)
 *Application in Light Mode - Showcasing the movie search interface*
 
-![Dark Mode View](./screenshots/dark.png)
+![Dark Mode View](./sscreenshots/dark.png)
 *Application in Dark Mode - Featuring the elegant dark theme*
 
 ## 🚀 Getting Started
@@ -24,7 +24,7 @@ A modern, responsive React application that allows users to search and explore m
 ### Prerequisites
 
 - Node.js (v14 or higher)
-- npm or yarn
+- npm
 - TMDB API Key (Free)
 
 ### TMDB API Setup
@@ -69,8 +69,6 @@ cd film-bank-react-API
 3. Install dependencies:
 ```bash
 npm install
-# or
-yarn install
 ```
 
 4. Create a `.env` file in the root directory and add your TMDB API key:
@@ -78,18 +76,29 @@ yarn install
 REACT_APP_TMDB_API_KEY=your_api_key_here
 ```
 
-5. Start the development server:
+### Running the Application
+
+1. Start the development server:
 ```bash
-npm start
-# or
-yarn start
+npm run dev
 ```
 
-The application will open in your default browser at `http://localhost:3000`.
+2. Open your browser and visit:
+```
+http://localhost:5173
+```
+
+### Building for Production
+
+To create a production build:
+```bash
+npm run build
+```
 
 ## 🛠️ Built With
 
 - React.js
+- Vite - Next Generation Frontend Tooling
 - React Router DOM
 - TMDB API
 - CSS3 with custom animations
